@@ -4,8 +4,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>2026 罗氏诊断中国 超有AI Day</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.staticfile.org/font-awesome/6.0.0/css/all.min.css">
+  
   <style>
+    /* 保持原有的高端罗氏设计 */
     :root { --roche-blue: #003da5; --roche-yellow: #ffda00; --slate: #475569; }
     body { font-family: 'Helvetica Neue', Arial, sans-serif; background: #f8fafc; margin: 0; padding: 0; color: #1e293b; -webkit-user-select: none; }
     .header { background: linear-gradient(135deg, var(--roche-blue) 0%, #002b75 100%); color: white; padding: 35px 25px 30px; text-align: center; border-radius: 0 0 30px 30px; box-shadow: 0 10px 30px rgba(0,61,165,0.15); }
@@ -19,10 +22,12 @@
     .content { padding: 20px; max-width: 550px; margin: auto; }
     .section-title { font-weight: bold; margin: 25px 0 12px; color: var(--roche-blue); font-size: 15px; display: flex; align-items: center; gap: 6px; }
     
+    /* 弹窗及视频 */
     .action-box { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.04); border-top: 5px solid var(--roche-yellow); margin-bottom: 25px; display: none; }
     .action-box h3 { margin-top: 0; color: var(--roche-blue); font-size: 16px; }
     video { width: 100%; border-radius: 12px; background: #000; margin-top: 10px; display: none; }
 
+    /* 地图 */
     .journey-container { position: relative; padding-left: 25px; margin-left: 5px; }
     .journey-container::before { content: ''; position: absolute; left: 8px; top: 0; width: 2px; height: 100%; background: #e2e8f0; }
     .journey-item { position: relative; margin-bottom: 20px; background: white; padding: 12px 18px; border-radius: 14px; box-shadow: 0 4px 10px rgba(0,0,0,0.01); }
@@ -33,6 +38,7 @@
     .badge { float: right; font-size: 11px; font-weight: bold; padding: 2px 8px; border-radius: 10px; background: #f1f5f9; color: #64748b; }
     .active .badge { background: #dcfce7; color: #166534; }
 
+    /* 兑换区及票券 */
     .redeem-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
     .redeem-card { background: white; padding: 15px 12px; border-radius: 16px; text-align: center; box-shadow: 0 4px 10px rgba(0,0,0,0.01); border: 1px solid #f1f5f9; }
     .redeem-card i { font-size: 22px; color: var(--roche-blue); margin-bottom: 8px; }
@@ -76,8 +82,10 @@
     <div class="action-box" id="action-box">
       <h3 id="action-title"><i class="fa-solid fa-bell"></i> 提示</h3>
       <p id="action-msg" style="font-size: 13px; color: #166534; font-weight: bold; margin: 5px 0;"></p>
-      <video id="action-video" controls poster="https://via.placeholder.com/600x340/003da5/FFFFFF?text=Roche+AI+Day+Video">
+      
+      <video id="action-video" controls playsinline webkit-playsinline>
         <source id="video-source" src="" type="video/mp4">
+        您的浏览器不支持 HTML5 视频播放。
       </video>
     </div>
 
@@ -178,6 +186,7 @@
 
       if (station) {
         processCheckIn(station);
+        // 清除 URL 参数，避免刷新重复打卡
         window.history.replaceState({}, document.title, window.location.pathname);
       }
       
