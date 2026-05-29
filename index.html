@@ -110,7 +110,7 @@
       </video>
 
       <div id="h2-journey-zone" style="display: none; border-top: 1px dashed #cbd5e1; margin-top: 15px; padding-top: 10px;">
-        <div style="font-size: 14px; font-weight: bold; color: var(--roche-blue);"><i class="fa-solid fa-map"></i> EverydayAI H2 下半年路线图</div>
+        <div style="font-size: 14px; font-weight: bold; color: var(--roche-blue);"><i class="fa-solid fa-map"></i> 2026 AI旅程 H2 下半年路线图</div>
         <div class="h2-timeline">
           <div class="h2-event">
             <span class="h2-month">6月 · JUNE</span>
@@ -118,7 +118,7 @@
             <div class="h2-desc">数字化专家培训计划。为业务量身定制，培养第一批懂业务、懂AI的超级个体。</div>
           </div>
           <div class="h2-event hot">
-            <span class="h2-month" style="color:#d97706">6月底 - 7月初</span>
+            <span class="h2-month" style="color:#d97706">7月 · JULY</span>
             <div class="h2-title">🔥 超有AI Day 线下大狂欢</div>
             <div class="h2-desc">年度重磅员工互动日！案例巡展、积分游戏、AIGC互动体验，见证AI的奇迹。</div>
           </div>
@@ -195,7 +195,7 @@
 
   <script>
     // ==========================================
-    // 1. 【更新完成】视频路径变更为根目录相对路径 ./
+    // 1. 完整视频数据库直链配置
     // ==========================================
     const VIDEO_DB = {
       "case_1": "./1_%E6%95%B0%E5%AD%97%E5%8C%96%E6%88%98%E7%95%A5%E7%86%94%E7%82%89%EF%BC%9A%E7%94%A8AI%E9%94%BB%E9%80%A0%E5%95%86%E4%B8%9A%E4%BB%B7%E5%80%BC.mp4",
@@ -264,7 +264,6 @@
       const videoTag = document.getElementById('media-player');
       const h2Zone = document.getElementById('h2-journey-zone');
       
-      // 默认隐藏 H2 活动路线地图模块与视频，由判断逻辑按需点亮
       h2Zone.style.display = 'none';
       videoTag.style.display = 'none';
 
@@ -272,7 +271,7 @@
         stationPanel.style.display = 'block';
         stationTitle.innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="color:#eab308"></i> 提示';
         stationMsg.innerText = "您已经点亮过该环节啦，快去探索其他站点吧！";
-        if (station === 'ai_journey') h2Zone.style.display = 'block'; // 即使重复进，H2也要展示内容
+        if (station === 'ai_journey') h2Zone.style.display = 'block';
         if (station.startsWith('case_') && VIDEO_DB[station]) {
           document.getElementById('media-source').src = VIDEO_DB[station];
           videoTag.load();
@@ -312,12 +311,11 @@
         msg = "🎉 成功打卡 Knowledge Hub！恭喜获得 20 积分中心权限！";
         stationTitle.innerHTML = '<i class="fa-solid fa-database" style="color:#1a73e8"></i> Enterprise Knowledge Hub';
       } 
-      // 【完美无缝融合逻辑】H2 打卡激活全套精美旅程视觉展示
       else if (station === 'ai_journey') {
         pointsGained = 10;
         msg = "🎉 成功打卡下半年 AI Journey 计划！恭喜获得 10 积分！";
         stationTitle.innerHTML = '<i class="fa-solid fa-map-location-dot" style="color:#e11d48"></i> H2 活动计划激活成功';
-        h2Zone.style.display = 'block'; // 动态展现精美路线图
+        h2Zone.style.display = 'block'; 
       }
 
       localData.checkIns.push(station);
