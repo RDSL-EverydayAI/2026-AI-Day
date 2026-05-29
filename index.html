@@ -27,9 +27,23 @@
     .content { padding: 20px; max-width: 550px; margin: auto; }
     .section-title { font-weight: bold; margin: 25px 0 12px; color: var(--roche-blue); font-size: 15px; display: flex; align-items: center; gap: 6px; }
     
-    .action-box { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.04); border-top: 5px solid var(--roche-yellow); margin-bottom: 25px; display: none; }
-    .action-box h3 { margin-top: 0; color: var(--roche-blue); font-size: 16px; }
+    .station-panel { background: white; border-radius: 20px; padding: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.04); border-top: 5px solid var(--roche-yellow); margin-bottom: 25px; display: none; }
+    .station-panel h3 { margin-top: 0; color: var(--roche-blue); font-size: 16px; }
     video { width: 100%; border-radius: 12px; background: #000; margin-top: 10px; display: none; }
+
+    /* H2 内嵌活动地图专用样式 */
+    .h2-timeline { position: relative; padding: 10px 0; margin-top: 15px; }
+    .h2-timeline::before { content: ''; position: absolute; left: 12px; top: 0; width: 3px; height: 100%; background: rgba(0, 61, 165, 0.1); border-radius: 2px; }
+    .h2-event { position: relative; margin-left: 30px; margin-bottom: 20px; background: #f8fafc; padding: 12px 15px; border-radius: 12px; border-left: 4px solid var(--roche-blue); }
+    .h2-event.hot { border-left-color: #f59e0b; background: #fffbeb; }
+    .h2-month { font-weight: bold; color: var(--roche-blue); font-size: 12px; display: block; margin-bottom: 2px; }
+    .h2-title { font-weight: bold; font-size: 14px; color: #1e293b; }
+    .h2-desc { font-size: 12px; color: var(--slate); margin-top: 4px; line-height: 1.4; }
+    .h2-podcast { background: #1e293b; color: white; padding: 15px; border-radius: 16px; text-align: center; margin-top: 15px; }
+    .h2-podcast h4 { margin: 0 0 5px 0; color: var(--roche-yellow); font-size: 14px; }
+    .h2-podcast p { margin: 0; font-size: 12px; opacity: 0.8; line-height: 1.4; }
+    .podcast-icon { font-size: 24px; color: var(--roche-yellow); margin-bottom: 8px; animation: pulse 2s infinite; display: block; }
+    @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 50% { transform: scale(1.1); opacity: 0.7; } 100% { transform: scale(1); opacity: 1; } }
 
     .journey-container { position: relative; padding-left: 25px; margin-left: 5px; }
     .journey-container::before { content: ''; position: absolute; left: 8px; top: 0; width: 2px; height: 100%; background: #e2e8f0; }
@@ -86,14 +100,50 @@
   </div>
 
   <div class="content">
-    <div class="action-box" id="action-box">
-      <h3 id="action-title"><i class="fa-solid fa-bell"></i> 提示</h3>
-      <p id="action-msg" style="font-size: 13px; color: #166534; font-weight: bold; margin: 5px 0;"></p>
+    <div class="station-panel" id="station-panel">
+      <h3 id="station-title"><i class="fa-solid fa-bell"></i> 提示</h3>
+      <p id="station-msg" style="font-size: 13px; color: #166534; font-weight: bold; margin: 5px 0;"></p>
       
-      <video id="action-video" controls playsinline webkit-playsinline preload="none">
-        <source id="video-source" src="" type="video/mp4">
+      <video id="media-player" controls playsinline webkit-playsinline preload="none">
+        <source id="media-source" src="" type="video/mp4">
         您的浏览器不支持 HTML5 视频播放。
       </video>
+
+      <div id="h2-journey-zone" style="display: none; border-top: 1px dashed #cbd5e1; margin-top: 15px; padding-top: 10px;">
+        <div style="font-size: 14px; font-weight: bold; color: var(--roche-blue);"><i class="fa-solid fa-map"></i> EverydayAI H2 下半年路线图</div>
+        <div class="h2-timeline">
+          <div class="h2-event">
+            <span class="h2-month">6月 · JUNE</span>
+            <div class="h2-title">🏆 Business AI Expert 启动</div>
+            <div class="h2-desc">数字化专家培训计划。为业务量身定制，培养第一批懂业务、懂AI的超级个体。</div>
+          </div>
+          <div class="h2-event hot">
+            <span class="h2-month" style="color:#d97706">6月底 - 7月初</span>
+            <div class="h2-title">🔥 超有AI Day 线下大狂欢</div>
+            <div class="h2-desc">年度重磅员工互动日！案例巡展、积分游戏、AIGC互动体验，见证AI的奇迹。</div>
+          </div>
+          <div class="h2-event">
+            <span class="h2-month">7月 · JULY</span>
+            <div class="h2-title">💡 EverydayAI 能力提升培训</div>
+            <div class="h2-desc">面向全员推出 3 场深度效率课，全面覆盖日常助理、提示词工程等。</div>
+          </div>
+          <div class="h2-event">
+            <span class="h2-month">9月 · SEPTEMBER</span>
+            <div class="h2-title">🚀 第二届 AI 案例大赛</div>
+            <div class="h2-desc">寻找最具有落地业务价值的AI实践，期待你的全新作品登场。</div>
+          </div>
+          <div class="h2-event">
+            <span class="h2-month">11月 · NOVEMBER</span>
+            <div class="h2-title">📂 Enterprise Knowledge Hub Phase 1</div>
+            <div class="h2-desc">企业级智慧知识中心 Phase 1 正式发布！打破信息孤岛，实现毫秒级智能检索。</div>
+          </div>
+        </div>
+        <div class="h2-podcast">
+          <i class="fa-solid fa-microphone-lines podcast-icon"></i>
+          <h4>EverydayAI Podcasts</h4>
+          <p>下半年将不定期推出系列音频节目，邀请大咖与内部专家带你听懂AI趋势，共享实战心得。</p>
+        </div>
+      </div>
     </div>
 
     <div class="section-title"><i class="fa-solid fa-route"></i> 我的 AI 探索地图</div>
@@ -145,7 +195,7 @@
 
   <script>
     // ==========================================
-    // 1. 完整视频数据库直链配置
+    // 1. 【更新完成】视频路径变更为根目录相对路径 ./
     // ==========================================
     const VIDEO_DB = {
       "case_1": "./1_%E6%95%B0%E5%AD%97%E5%8C%96%E6%88%98%E7%95%A5%E7%86%94%E7%82%89%EF%BC%9A%E7%94%A8AI%E9%94%BB%E9%80%A0%E5%95%86%E4%B8%9A%E4%BB%B7%E5%80%BC.mp4",
@@ -193,13 +243,11 @@
 
       if (station) {
         processCheckIn(station);
-        // 清除 URL 参数，避免刷新重复打卡
         window.history.replaceState({}, document.title, window.location.pathname);
       }
       
       renderUI();
 
-      // 页面渲染完毕后，优雅地隐藏 Loading 屏
       setTimeout(() => {
         const loader = document.getElementById('loading-screen');
         if (loader) {
@@ -210,15 +258,26 @@
     });
 
     function processCheckIn(station) {
-      const actionBox = document.getElementById('action-box');
-      const actionTitle = document.getElementById('action-title');
-      const actionMsg = document.getElementById('action-msg');
-      const videoTag = document.getElementById('action-video');
+      const stationPanel = document.getElementById('station-panel');
+      const stationTitle = document.getElementById('station-title');
+      const stationMsg = document.getElementById('station-msg');
+      const videoTag = document.getElementById('media-player');
+      const h2Zone = document.getElementById('h2-journey-zone');
       
+      // 默认隐藏 H2 活动路线地图模块与视频，由判断逻辑按需点亮
+      h2Zone.style.display = 'none';
+      videoTag.style.display = 'none';
+
       if (localData.checkIns.includes(station)) {
-        actionBox.style.display = 'block';
-        actionTitle.innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="color:#eab308"></i> 提示';
-        actionMsg.innerText = "您已经点亮过该环节啦，快去探索其他站点吧！";
+        stationPanel.style.display = 'block';
+        stationTitle.innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="color:#eab308"></i> 提示';
+        stationMsg.innerText = "您已经点亮过该环节啦，快去探索其他站点吧！";
+        if (station === 'ai_journey') h2Zone.style.display = 'block'; // 即使重复进，H2也要展示内容
+        if (station.startsWith('case_') && VIDEO_DB[station]) {
+          document.getElementById('media-source').src = VIDEO_DB[station];
+          videoTag.load();
+          videoTag.style.display = 'block';
+        }
         return;
       }
 
@@ -240,27 +299,25 @@
           msg = "打卡成功！您已阅读案例 #" + caseCount + "。（案例集邮积分已达上限 20 分）";
         }
         
-        actionTitle.innerHTML = '<i class="fa-solid fa-trophy" style="color:var(--roche-yellow)"></i> 案例大赛作品 #' + station.split('_')[1];
+        stationTitle.innerHTML = '<i class="fa-solid fa-trophy" style="color:var(--roche-yellow)"></i> 案例大赛作品 #' + station.split('_')[1];
         
         if (VIDEO_DB[station]) {
-          document.getElementById('video-source').src = VIDEO_DB[station];
+          document.getElementById('media-source').src = VIDEO_DB[station];
           videoTag.load();
           videoTag.style.display = 'block';
-        } else {
-          videoTag.style.display = 'none';
         }
       } 
       else if (station === 'ekh') {
         pointsGained = 20;
-        msg = "🎉 成功打卡 Knowledge Hub！恭喜获得 20 积分！";
-        actionTitle.innerHTML = '<i class="fa-solid fa-database" style="color:#1a73e8"></i> Enterprise Knowledge Hub';
-        videoTag.style.display = 'none';
+        msg = "🎉 成功打卡 Knowledge Hub！恭喜获得 20 积分中心权限！";
+        stationTitle.innerHTML = '<i class="fa-solid fa-database" style="color:#1a73e8"></i> Enterprise Knowledge Hub';
       } 
+      // 【完美无缝融合逻辑】H2 打卡激活全套精美旅程视觉展示
       else if (station === 'ai_journey') {
         pointsGained = 10;
         msg = "🎉 成功打卡下半年 AI Journey 计划！恭喜获得 10 积分！";
-        actionTitle.innerHTML = '<i class="fa-solid fa-map-location-dot" style="color:#e11d48"></i> H2 活动计划';
-        videoTag.style.display = 'none';
+        stationTitle.innerHTML = '<i class="fa-solid fa-map-location-dot" style="color:#e11d48"></i> H2 活动计划激活成功';
+        h2Zone.style.display = 'block'; // 动态展现精美路线图
       }
 
       localData.checkIns.push(station);
@@ -268,8 +325,8 @@
       localData.points.available += pointsGained;
       saveData();
 
-      actionMsg.innerText = msg;
-      actionBox.style.display = 'block';
+      stationMsg.innerText = msg;
+      stationPanel.style.display = 'block';
     }
 
     // ==========================================
