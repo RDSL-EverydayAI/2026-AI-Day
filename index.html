@@ -31,6 +31,11 @@
     .station-panel h3 { margin-top: 0; color: var(--roche-blue); font-size: 16px; }
     video { width: 100%; border-radius: 12px; background: #000; margin-top: 10px; display: none; }
 
+    /* EKH 特色卡片样式 */
+    .ekh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
+    .ekh-feature { background: #f8fafc; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
+    .ekh-feature i { font-size: 20px; margin-bottom: 8px; display: block; }
+
     /* H2 内嵌活动地图专用样式 */
     .h2-timeline { position: relative; padding: 10px 0; margin-top: 15px; }
     .h2-timeline::before { content: ''; position: absolute; left: 12px; top: 0; width: 3px; height: 100%; background: rgba(0, 61, 165, 0.1); border-radius: 2px; }
@@ -109,12 +114,33 @@
         您的浏览器不支持 HTML5 视频播放。
       </video>
 
+      <div id="ekh-zone" style="display: none;">
+        <div class="ekh-grid">
+          <div class="ekh-feature">
+            <i class="fa-solid fa-magnifying-glass" style="color: var(--roche-blue);"></i>
+            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">毫秒级检索</span>
+          </div>
+          <div class="ekh-feature">
+            <i class="fa-solid fa-diagram-project" style="color: var(--roche-yellow);"></i>
+            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">全局知识图谱</span>
+          </div>
+          <div class="ekh-feature">
+            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i>
+            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">企业级安全</span>
+          </div>
+          <div class="ekh-feature">
+            <i class="fa-solid fa-bolt" style="color: #f43f5e;"></i>
+            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">打破数据孤岛</span>
+          </div>
+        </div>
+      </div>
+
       <div id="h2-journey-zone" style="display: none; border-top: 1px dashed #cbd5e1; margin-top: 15px; padding-top: 10px;">
         <div style="font-size: 14px; font-weight: bold; color: var(--roche-blue);"><i class="fa-solid fa-map"></i> 2026 AI旅程 H2 下半年路线图</div>
         <div class="h2-timeline">
           <div class="h2-event">
             <span class="h2-month">6月 · JUNE</span>
-            <div class="h2-title">🏆 Business AI Expert 启动</div>
+            <div class="h2-title">🏆 Business AI Expert 实战训练营第一期 启动</div>
             <div class="h2-desc">数字化专家培训计划。为业务量身定制，培养第一批懂业务、懂AI的超级个体。</div>
           </div>
           <div class="h2-event hot">
@@ -137,6 +163,11 @@
             <div class="h2-title">📂 Enterprise Knowledge Hub Phase 1</div>
             <div class="h2-desc">企业级智慧知识中心 Phase 1 正式发布！打破信息孤岛，实现毫秒级智能检索。</div>
           </div>
+          <div class="h2-event">
+            <span class="h2-month">Q4 · FOURTH QUARTER</span>
+            <div class="h2-title">🎯 Business AI Expert 实战训练营第二期</div>
+            <div class="h2-desc">实战再进阶！围绕更多高阶应用场景与业务深度结合，开启第二波全能 AI 人才孵化。</div>
+          </div>
         </div>
         <div class="h2-podcast">
           <i class="fa-solid fa-microphone-lines podcast-icon"></i>
@@ -155,7 +186,7 @@
       </div>
       <div id="node-ekh" class="journey-item">
         <span class="badge" id="badge-ekh">20 积分</span>
-        <div class="journey-title">Knowledge Hub 体验</div>
+        <div class="journey-title">Enterprise Knowledge Hub 展示</div>
         <span class="journey-desc">扫码点亮直接获得 20 积分</span>
       </div>
       <div id="node-ai_journey" class="journey-item">
@@ -168,18 +199,12 @@
     <div class="section-title"><i class="fa-solid fa-gift"></i> 积分奖赏兑换处</div>
     <div class="redeem-grid">
       <div class="redeem-card">
-        <i class="fa-solid fa-face-smile-wink"></i>
-        <strong>AIGC 互动拍照</strong>
-        <small>20 积分</small>
-        <button class="btn" onclick="redeemPrize('AIGC 互动拍照', 20)">消耗积分兑换</button>
-      </div>
-      <div class="redeem-card">
         <i class="fa-solid fa-video"></i>
         <strong>360° 全景拍摄</strong>
         <small>20 积分</small>
         <button class="btn" onclick="redeemPrize('360° 全景拍摄', 20)">消耗积分兑换</button>
       </div>
-      <div class="redeem-card" style="grid-column: span 2;">
+      <div class="redeem-card">
         <i class="fa-solid fa-circle-dollar-to-slot"></i>
         <strong>抓娃娃机游戏币 (5枚)</strong>
         <small>10 积分</small>
@@ -194,9 +219,6 @@
   </div>
 
   <script>
-    // ==========================================
-    // 1. 完整视频数据库直链配置
-    // ==========================================
     const VIDEO_DB = {
       "case_1": "./1_%E6%95%B0%E5%AD%97%E5%8C%96%E6%88%98%E7%95%A5%E7%86%94%E7%82%89%EF%BC%9A%E7%94%A8AI%E9%94%BB%E9%80%A0%E5%95%86%E4%B8%9A%E4%BB%B7%E5%80%BC.mp4",
       "case_2": "./2_AI%E9%A9%B1%E5%8A%A8%E7%9A%84%E4%BB%AA%E5%99%A8%E5%8D%87%E7%BA%A7%E8%87%AA%E5%8A%A8%E5%8C%96.mp4",
@@ -218,12 +240,10 @@
       "case_18": "./18_%E9%AB%98%E9%A3%8E%E9%99%A9%E8%A3%85%E6%9C%BA%E4%B8%AD%E7%9A%84AI%E5%BA%94%E7%94%A8%EF%BC%9A%E5%94%A4%E9%86%92%E6%B2%89%E7%9D%A1%E7%9A%84%E6%96%87%E6%A1%A3.mp4",
       "case_19": "./19_AI%E5%AE%9E%E6%88%98%EF%BC%9A%E8%87%AA%E5%8A%A8%E7%94%9F%E6%88%90%E7%BB%8F%E9%94%80%E5%95%86%E9%80%9A%E7%9F%A5%E5%87%BD.mp4",
       "case_20": "./20_AI%E5%AF%B9%E5%86%B3%E5%8C%BB%E7%96%97%E9%94%80%E5%94%AE%E5%AE%A1%E6%89%B9%E7%93%B6%E9%A2%88.mp4",
-      "case_21": "./21_%E9%80%83%E7%A6%BB%E4%BB%B7%E6%A0%BC%E6%88%98%EF%BC%9A%E4%B8%93%E4%B8%9AAI%E7%9A%84%E7%A0%B4%E5%B1%80%E4%B9%8B%E8%B7%AF.mp4"
+      "case_21": "./21_%E9%80%83%E7%A6%BB%E4%BB%B7%E6%A0%BC%E6%88%98%EF%BC%9A%E4%B8%93%E4%B8%9AAI%E7%9A%84%E7%A0%B4%E5%B1%80%E4%B9%8B%E8%B7%AF.mp4",
+      "ekh": "./Knowledge%20Hub%20Demo.mp4"
     };
 
-    // ==========================================
-    // 2. 本地缓存数据初始化
-    // ==========================================
     let localData = JSON.parse(localStorage.getItem('rocheAiDayData')) || {
       points: { total: 0, available: 0, used: 0 },
       checkIns: [],
@@ -234,9 +254,6 @@
       localStorage.setItem('rocheAiDayData', JSON.stringify(localData));
     }
 
-    // ==========================================
-    // 3. 核心逻辑：处理扫码进入时的打卡
-    // ==========================================
     document.addEventListener("DOMContentLoaded", function() {
       const urlParams = new URLSearchParams(window.location.search);
       const station = urlParams.get('station');
@@ -262,16 +279,27 @@
       const stationTitle = document.getElementById('station-title');
       const stationMsg = document.getElementById('station-msg');
       const videoTag = document.getElementById('media-player');
+      const ekhZone = document.getElementById('ekh-zone');
       const h2Zone = document.getElementById('h2-journey-zone');
       
       h2Zone.style.display = 'none';
+      ekhZone.style.display = 'none';
       videoTag.style.display = 'none';
 
       if (localData.checkIns.includes(station)) {
         stationPanel.style.display = 'block';
         stationTitle.innerHTML = '<i class="fa-solid fa-triangle-exclamation" style="color:#eab308"></i> 提示';
         stationMsg.innerText = "您已经点亮过该环节啦，快去探索其他站点吧！";
+        
         if (station === 'ai_journey') h2Zone.style.display = 'block';
+        if (station === 'ekh') {
+          ekhZone.style.display = 'block';
+          if (VIDEO_DB['ekh']) {
+            document.getElementById('media-source').src = VIDEO_DB['ekh'];
+            videoTag.load();
+            videoTag.style.display = 'block';
+          }
+        }
         if (station.startsWith('case_') && VIDEO_DB[station]) {
           document.getElementById('media-source').src = VIDEO_DB[station];
           videoTag.load();
@@ -308,8 +336,15 @@
       } 
       else if (station === 'ekh') {
         pointsGained = 20;
-        msg = "🎉 成功打卡 Knowledge Hub！恭喜获得 20 积分中心权限！";
+        msg = "🎉 成功打卡 Enterprise Knowledge Hub！恭喜获得 20 积分！";
         stationTitle.innerHTML = '<i class="fa-solid fa-database" style="color:#1a73e8"></i> Enterprise Knowledge Hub';
+        ekhZone.style.display = 'block';
+        
+        if (VIDEO_DB['ekh']) {
+          document.getElementById('media-source').src = VIDEO_DB['ekh'];
+          videoTag.load();
+          videoTag.style.display = 'block';
+        }
       } 
       else if (station === 'ai_journey') {
         pointsGained = 10;
@@ -327,9 +362,6 @@
       stationPanel.style.display = 'block';
     }
 
-    // ==========================================
-    // 4. 渲染界面
-    // ==========================================
     function renderUI() {
       document.getElementById('p-avail').innerText = localData.points.available + " Pt";
       document.getElementById('p-total').innerText = localData.points.total + " Pt";
@@ -372,9 +404,6 @@
       }
     }
 
-    // ==========================================
-    // 5. 兑换逻辑
-    // ==========================================
     function redeemPrize(prizeName, cost) {
       if (localData.points.available < cost) {
         alert("兑换失败：当前可用积分不足，快去打卡点亮地图吧！");
@@ -401,9 +430,6 @@
       }
     }
 
-    // ==========================================
-    // 6. 核销逻辑
-    // ==========================================
     function verifyTicket(ticketId, prizeName) {
       if (confirm(`【⚠️ 工作人员核销确认】\n\n确定核销这张 [${prizeName}] 吗？\n核销后此券将立即失效且不可恢复！`)) {
         const ticketIndex = localData.redemptions.findIndex(t => t.id === ticketId);
