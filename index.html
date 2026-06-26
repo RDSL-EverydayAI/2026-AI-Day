@@ -31,11 +31,6 @@
     .station-panel h3 { margin-top: 0; color: var(--roche-blue); font-size: 16px; }
     video { width: 100%; border-radius: 12px; background: #000; margin-top: 10px; display: none; }
 
-    /* EKH 特色卡片样式 */
-    .ekh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 15px; }
-    .ekh-feature { background: #f8fafc; padding: 12px; border-radius: 12px; text-align: center; border: 1px solid #e2e8f0; }
-    .ekh-feature i { font-size: 20px; margin-bottom: 8px; display: block; }
-
     /* H2 内嵌活动地图专用样式 */
     .h2-timeline { position: relative; padding: 10px 0; margin-top: 15px; }
     .h2-timeline::before { content: ''; position: absolute; left: 12px; top: 0; width: 3px; height: 100%; background: rgba(0, 61, 165, 0.1); border-radius: 2px; }
@@ -99,7 +94,7 @@
       </div>
       <div class="stat-item">
         <span class="stat-value" id="p-total">0 Pt</span>
-        <span class="stat-label"><i class="fa-solid fa-chart-line"></i> 总计获取 (满分50)</span>
+        <span class="stat-label"><i class="fa-solid fa-chart-line"></i> 总计获取 (满分40)</span>
       </div>
     </div>
   </div>
@@ -114,29 +109,8 @@
         您的浏览器不支持 HTML5 视频播放。
       </video>
 
-      <div id="ekh-zone" style="display: none;">
-        <div class="ekh-grid">
-          <div class="ekh-feature">
-            <i class="fa-solid fa-magnifying-glass" style="color: var(--roche-blue);"></i>
-            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">毫秒级检索</span>
-          </div>
-          <div class="ekh-feature">
-            <i class="fa-solid fa-diagram-project" style="color: var(--roche-yellow);"></i>
-            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">全局知识图谱</span>
-          </div>
-          <div class="ekh-feature">
-            <i class="fa-solid fa-shield-halved" style="color: #10b981;"></i>
-            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">企业级安全</span>
-          </div>
-          <div class="ekh-feature">
-            <i class="fa-solid fa-bolt" style="color: #f43f5e;"></i>
-            <span style="font-size: 12px; font-weight: bold; color: #1e293b;">打破数据孤岛</span>
-          </div>
-        </div>
-      </div>
-
       <div id="h2-journey-zone" style="display: none; border-top: 1px dashed #cbd5e1; margin-top: 15px; padding-top: 10px;">
-        <div style="font-size: 14px; font-weight: bold; color: var(--roche-blue);"><i class="fa-solid fa-map"></i> 2026 AI旅程 H2 下半年路线图</div>
+        <div style="font-size: 14px; font-weight: bold; color: var(--roche-blue);"><i class="fa-solid fa-map"></i> 2026 AI旅程 H2 下慢年路线图</div>
         <div class="h2-timeline">
           <div class="h2-event">
             <span class="h2-month">6月 · JUNE</span>
@@ -185,9 +159,9 @@
         <span class="journey-desc">满5个解锁10分，最高可累积 20 积分</span>
       </div>
       <div id="node-ekh" class="journey-item">
-        <span class="badge" id="badge-ekh">20 积分</span>
+        <span class="badge" id="badge-ekh">10 积分</span>
         <div class="journey-title">Enterprise Knowledge Hub 展示</div>
-        <span class="journey-desc">扫码点亮直接获得 20 积分</span>
+        <span class="journey-desc">扫码点亮直接获得 10 积分</span>
       </div>
       <div id="node-ai_journey" class="journey-item">
         <span class="badge" id="badge-ai_journey">10 积分</span>
@@ -279,11 +253,9 @@
       const stationTitle = document.getElementById('station-title');
       const stationMsg = document.getElementById('station-msg');
       const videoTag = document.getElementById('media-player');
-      const ekhZone = document.getElementById('ekh-zone');
       const h2Zone = document.getElementById('h2-journey-zone');
       
       h2Zone.style.display = 'none';
-      ekhZone.style.display = 'none';
       videoTag.style.display = 'none';
 
       if (localData.checkIns.includes(station)) {
@@ -293,7 +265,6 @@
         
         if (station === 'ai_journey') h2Zone.style.display = 'block';
         if (station === 'ekh') {
-          ekhZone.style.display = 'block';
           if (VIDEO_DB['ekh']) {
             document.getElementById('media-source').src = VIDEO_DB['ekh'];
             videoTag.load();
@@ -335,10 +306,10 @@
         }
       } 
       else if (station === 'ekh') {
-        pointsGained = 20;
-        msg = "🎉 成功打卡 Enterprise Knowledge Hub！恭喜获得 20 积分！";
+        // 修改点 4：打卡获取分值下调为 10 分
+        pointsGained = 10;
+        msg = "🎉 成功打卡 Enterprise Knowledge Hub！恭喜获得 10 积分！";
         stationTitle.innerHTML = '<i class="fa-solid fa-database" style="color:#1a73e8"></i> Enterprise Knowledge Hub';
-        ekhZone.style.display = 'block';
         
         if (VIDEO_DB['ekh']) {
           document.getElementById('media-source').src = VIDEO_DB['ekh'];
